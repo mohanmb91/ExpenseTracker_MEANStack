@@ -1,0 +1,23 @@
+{
+  "name": "expense_manager",
+  "version": "1.0.0",
+  "description": "manage your daily expense",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohanmb91/ExpenseTracker_MEANStack.git"
+  },
+  "author": "mohan kumar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mohanmb91/ExpenseTracker_MEANStack/issues"
+  },
+  "homepage": "https://github.com/mohanmb91/ExpenseTracker_MEANStack#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "jade": "^1.11.0"
+  }
+}
