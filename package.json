@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "engines": {
-    "node":"v7.7.4",
-    "npm":"4.1.x"
+    "node": "v7.7.4",
+    "npm": "4.1.x"
   },
   "repository": {
     "type": "git",
@@ -23,10 +23,14 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "bower": "^1.8.0",
+    "cookie-parser": "^1.4.3",
     "express": "^4.15.3",
+    "express-session": "^1.15.3",
     "jade": "^1.11.0",
     "mongoose": "^4.10.6",
     "morgan": "^1.8.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "stylus": "^0.54.5"
   },
   "devDependencies": {
