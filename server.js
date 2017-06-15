@@ -1,64 +1,18 @@
-var express = require("express"),
-    stylus = require("stylus"),
-    logger = require("morgan"),
-    bodyParser = require("body-parser"),
-    mongoose = require("mongoose");
+var express = require('express');
 
-var env = process.env.NODE_ENV = process.env.NODE_ENV  || 'development';
+var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var app = express();
 
-function compile(str,path){
-    return stylus(str).set('filename',path);
-}
+var config = require('./server/config/config')[env];
 
-app.set('views',__dirname+ '/server/views');
-app.set('view engine', 'jade');
-app.use(logger('dev'));
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-app.use(stylus.middleware(
-    {
-        src: __dirname + '/public',
-        compile: compile
-    }
-));
-app.use(express.static(__dirname + '/public'));
-if(env == 'development'){
-    mongoose.connect('mongodb://localhost/expensemanager');
-}else{
-    mongoose.connect('mongodb://mohanmb91:abcd@ds127842.mlab.com:27842/expensemanager');
-}
+require('./server/config/express')(app, config);
 
-//mongo ds127842.mlab.com:27842/expensemanager -u mohanmb91 -p abcd
+require('./server/config/mongoose')(config);
 
+require('./server/config/passport')();
 
-var db = mongoose.connection;
-db.on('error',console.error.bind(console,'conntection error ... '));
-db.once('open',function callback(){
-    console.log("expense manager DB open");
-});
+require('./server/config/routes')(app);
 
-var messageSchema = mongoose.Schema({message: "String"});
-var Message = mongoose.model('Message',messageSchema);
-var mongoMessage;
-
-Message.findOne().exec(function (err,messagedoc){
-    mongoMessage = messagedoc.message;
-});
-
-
-app.get('/partials/:partialPath',function(req,res){
-    res.render('partials/'+ req.params.partialPath);
-});
-
-app.get('*',function(req,res){
-    res.render('index',{
-        mongoMessage: mongoMessage
-    });
-});
-
-
-var port = process.env.PORT || 3030;
-app.listen(port);
-console.log('Listening on port' + port + '....');
+app.listen(config.port);
+console.log('Listening on port ' + config.port + '...');
