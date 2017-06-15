@@ -24,7 +24,14 @@ app.use(stylus.middleware(
     }
 ));
 app.use(express.static(__dirname + '/public'));
-mongoose.connect('mongodb://localhost/expensemanager');
+if(env == 'development'){
+    mongoose.connect('mongodb://localhost/expensemanager');
+}else{
+    mongoose.connect('mongodb://mohanmb91:abcd@ds127842.mlab.com:27842/expensemanager');
+}
+
+//mongo ds127842.mlab.com:27842/expensemanager -u mohanmb91 -p abcd
+
 
 var db = mongoose.connection;
 db.on('error',console.error.bind(console,'conntection error ... '));
@@ -51,6 +58,7 @@ app.get('*',function(req,res){
     });
 });
 
-var port = 3030;
+
+var port = process.env.PORT || 3030;
 app.listen(port);
 console.log('Listening on port' + port + '....');
