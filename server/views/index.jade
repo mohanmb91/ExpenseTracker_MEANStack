@@ -1,7 +1,6 @@
-doctype
+extends ../includes/layout
 
-html
-    head
-
-    body
-        h1 Expense Manager
+block main-content
+    section.content 
+        div(ng-view)
+    h2= mongoMessage
