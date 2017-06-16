@@ -13,4 +13,11 @@ app.get('*',function(req,res){
 });
 
 app.post('/login', auth.authenticate);
+
+app.post('/logout', function(req,res){
+    req.logout();
+    res.end();
+});
+
+
 }

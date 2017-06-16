@@ -11,6 +11,14 @@ angular.module('app').factory('emAuth', function($http, emIdentity, $q) {
         }
       });
       return dfd.promise;
+    },
+    logoutUser: function(){
+      var dfd = $q.defer();
+      $http.post('/logout',{logout:true}).then(function(){
+        emIdentity.currentUser = undefined;
+        dfd.resolve();
+      });
+      return dfd.promise;
     }
   }
 });
