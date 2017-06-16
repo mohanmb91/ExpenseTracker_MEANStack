@@ -1,7 +1,8 @@
-angular.module('app').factory('emIdentity', function($window) {
+angular.module('app').factory('emIdentity', function($window,emUser) {
   var currentUser;
   if(!!$window.bootstrappedUserObject) {
-    currentUser = $window.bootstrappedUserObject;
+    var currentUser = new emUser();
+    angular.extend(currentUser,$window.bootstrappedUserObject);
   }
   return {
     currentUser: currentUser,

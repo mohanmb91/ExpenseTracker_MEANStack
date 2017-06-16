@@ -1,10 +1,12 @@
-angular.module('app').factory('emAuth', function($http, emIdentity, $q) {
+angular.module('app').factory('emAuth', function($http, emIdentity, $q,emUser) {
   return {
     authenticateUser: function(username, password) {
       var dfd = $q.defer();
       $http.post('/login', {username:username, password:password}).then(function(response) {
         if(response.data.success) {
-          emIdentity.currentUser = response.data.user;
+          var user = new emUser();
+          angular.extend(user,response.data.user);
+          emIdentity.currentUser = user;
           dfd.resolve(true);
         } else {
           dfd.resolve(false);
