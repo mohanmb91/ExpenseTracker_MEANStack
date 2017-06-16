@@ -22,6 +22,19 @@ angular.module('app').factory('emAuth', function($http, emIdentity, $q,emUser) {
       });
       return dfd.promise;
     },
+    createUser: function(newUserData) {
+      var newUser = new emUser(newUserData);
+      var dfd = $q.defer();
+
+      newUser.$save().then(function() {
+        emIdentity.currentUser = newUser;
+        dfd.resolve();
+      }, function(response) {
+        dfd.reject(response.data.reason);
+      });
+
+      return dfd.promise;
+    },
     authorizeCurrentUserForRoute: function(role) {
       if(emIdentity.isAuthorized(role)) {
         return true;

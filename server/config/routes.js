@@ -11,7 +11,7 @@ app.get('/partials/*', function(req, res) {
 
 
 app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
-
+app.post('/api/users', users.createUser);
 
 app.get('*',function(req,res){
     res.render('index', {bootstrappedUser : req.user});
