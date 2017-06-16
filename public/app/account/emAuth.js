@@ -21,6 +21,14 @@ angular.module('app').factory('emAuth', function($http, emIdentity, $q,emUser) {
         dfd.resolve();
       });
       return dfd.promise;
+    },
+    authorizeCurrentUserForRoute: function(role) {
+      if(emIdentity.isAuthorized(role)) {
+        return true;
+      } else {
+        return $q.reject('not authorized');
+      }
+
     }
   }
 });
