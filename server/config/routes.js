@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    auth = require('./auth');
+    auth = require('./auth'),
+    users = require('../controllers/users');
 
 
 module.exports = function(app) {
@@ -7,6 +8,10 @@ module.exports = function(app) {
 app.get('/partials/*', function(req, res) {
     res.render('../../public/app/' + req.params[0]);
   });
+
+
+app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
+
 
 app.get('*',function(req,res){
     res.render('index', {bootstrappedUser : req.user});
