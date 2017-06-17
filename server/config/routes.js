@@ -12,6 +12,7 @@ app.get('/partials/*', function(req, res) {
 
 app.get('/api/users', auth.requiresRole('admin'), users.getUsers);
 app.post('/api/users', users.createUser);
+app.put('/api/users', users.updateUser);
 
 app.get('*',function(req,res){
     res.render('index', {bootstrappedUser : req.user});

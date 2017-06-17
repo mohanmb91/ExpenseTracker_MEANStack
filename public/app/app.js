@@ -4,9 +4,15 @@ angular.module('app').config(function($routeProvider, $locationProvider){
     var routeRoleChecks = {
         admin: 
         {
-            auth : function(emAuth){
-            emAuth.authorizeCurrentUserForRoute('admin')
-            }
+          auth : function(emAuth){
+          emAuth.authorizeCurrentUserForRoute('admin')
+          }
+        },
+        user: 
+        {
+          auth: function(emAuth) {
+          return emAuth.authorizeAuthenticatedUserForRoute()
+        }
         }
     }
 
@@ -19,6 +25,12 @@ angular.module('app').config(function($routeProvider, $locationProvider){
         })
         .when('/signup', { templateUrl: '/partials/account/signup',
         controller: 'emSignupCtrl'
+        })
+        .when('/profile', { templateUrl: '/partials/account/profile',
+          controller: 'emProfileCtrl', resolve: routeRoleChecks.user
+        })
+         .when('/addExpense', { templateUrl: '/partials/account/addExpense',
+          controller: 'emExpenseCtrl', resolve: routeRoleChecks.user
         })
 });
 

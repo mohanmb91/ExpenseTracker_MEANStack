@@ -35,6 +35,20 @@ angular.module('app').factory('emAuth', function($http, emIdentity, $q,emUser) {
 
       return dfd.promise;
     },
+
+    updateCurrentUser: function(newUserData) {
+      var dfd = $q.defer();
+
+      var clone = angular.copy(emIdentity.currentUser);
+      angular.extend(clone, newUserData);
+      clone.$update().then(function() {
+        emIdentity.currentUser = clone;
+        dfd.resolve();
+      }, function(response) {
+        dfd.reject(response.data.reason);
+      });
+      return dfd.promise;
+    },
     authorizeCurrentUserForRoute: function(role) {
       if(emIdentity.isAuthorized(role)) {
         return true;
@@ -42,6 +56,13 @@ angular.module('app').factory('emAuth', function($http, emIdentity, $q,emUser) {
         return $q.reject('not authorized');
       }
 
+    },
+    authorizeAuthenticatedUserForRoute: function() {
+      if(emIdentity.isAuthenticated()) {
+        return true;
+      } else {
+        return $q.reject('not authorized');
+      }
     }
   }
 });
