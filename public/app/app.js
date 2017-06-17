@@ -1,4 +1,4 @@
-angular.module('app',['ngResource','ngRoute']);
+angular.module('app',['ngResource','ngRoute','720kb.datepicker']);
 
 angular.module('app').config(function($routeProvider, $locationProvider){
     var routeRoleChecks = {
@@ -29,8 +29,8 @@ angular.module('app').config(function($routeProvider, $locationProvider){
         .when('/profile', { templateUrl: '/partials/account/profile',
           controller: 'emProfileCtrl', resolve: routeRoleChecks.user
         })
-         .when('/addExpense', { templateUrl: '/partials/account/addExpense',
-          controller: 'emExpenseCtrl', resolve: routeRoleChecks.user
+         .when('/manageExpense', { templateUrl: '/partials/account/manageExpense',
+          controller: 'emManageExpenseCtrl', resolve: routeRoleChecks.user
         })
 });
 

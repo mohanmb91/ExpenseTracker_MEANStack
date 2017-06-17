@@ -1,4 +1,4 @@
-angular.module('app').factory('emAuth', function($http, emIdentity, $q,emUser) {
+angular.module('app').factory('emAuth', function($http, emIdentity, $q,emUser, emExpense) {
   return {
     authenticateUser: function(username, password) {
       var dfd = $q.defer();
@@ -32,10 +32,18 @@ angular.module('app').factory('emAuth', function($http, emIdentity, $q,emUser) {
       }, function(response) {
         dfd.reject(response.data.reason);
       });
-
       return dfd.promise;
     },
-
+    createExpense: function(newExpenseData){
+      var newExpense = new emExpense(newExpenseData);
+      var dfd = $q.defer();
+      newExpense.$save().then(function() {
+        dfd.resolve();
+      }, function(response) {
+        dfd.reject(response.data.reason);
+      });
+      return dfd.promise;
+    },
     updateCurrentUser: function(newUserData) {
       var dfd = $q.defer();
 

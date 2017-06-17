@@ -1,0 +1,34 @@
+.container
+    h1 Expenses List
+    table.table
+        thead
+            tr
+                th Expense Title
+                th Description
+                th Amount 
+                th Date
+        tbody
+            tr
+                td
+                    input.form-control(ng-model="title")
+                td
+                    input.form-control(ng-model="description")
+                td
+                    input.form-control(ng-model="amount")
+                td
+                    datepicker
+                        input(ng-model="expenseDate", type="text")
+                    
+                td 
+                    button.btn.btn-info(ng-click="addExpense()") Add Expense
+                td 
+                    button.btn.btn-info(ng-click="updateExpense()") Update Expense
+                td 
+                    button.btn.btn-info(ng-click="deselectExpense()") clear
+
+            tr(ng-repeat="eachExpense in expenseList")
+                td {{eachExpense.title}}
+                td {{eachExpense.description}}
+                td {{eachExpense.amount}}
+                td {{eachExpense.created}}
+    h2 {{userId}}
