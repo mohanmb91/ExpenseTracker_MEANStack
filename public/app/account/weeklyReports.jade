@@ -1,0 +1,18 @@
+.container
+    h2 Expenses based on year week
+    
+    div(ng-repeat= "(weekyear,expenses) in groupByWeek")
+        center
+            h4 {{prettyPrint(weekyear)}}
+        
+        table.table.table-striped 
+            tr 
+                th Title
+                th Description
+                th Amount
+                th Date Created
+            tr(ng-repeat="eachExpense in expenses | orderBy: '-created'")
+                td {{eachExpense.title }}
+                td {{eachExpense.description }}
+                td {{eachExpense.amount }}
+                td {{prettyDate(eachExpense.created)}}

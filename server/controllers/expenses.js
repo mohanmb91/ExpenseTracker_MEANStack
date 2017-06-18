@@ -24,6 +24,23 @@ exports.getUserExpenses= function(req,res,next){
    });
 };
 
+exports.getExpenseWithInRange = function(req,res,next){
+  var dateStart = req.params.startDate;
+  var dateEnd = req.params.endDate;
+  console.log("Server start Date" + dateStart);
+  Expense.find({userId:req.params.id,
+    created:{
+      $gte: dateStart,
+      $lt: dateEnd
+    }
+  }).exec(function(err,expense){
+     if(err) {
+      res.status(400);
+      return res.send({reason:err.toString()});
+    }
+    res.send(expense);
+   });
+};
 exports.getExpense= function(req,res,next){
   var expenseId = req.params.id;
    Expense.findOne({_id:expenseId}).exec(function(err,expense){

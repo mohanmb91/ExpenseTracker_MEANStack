@@ -32,6 +32,9 @@ angular.module('app').config(function($routeProvider, $locationProvider){
          .when('/manageExpense', { templateUrl: '/partials/account/manageExpense',
           controller: 'emManageExpenseCtrl', resolve: routeRoleChecks.user
         })
+         .when('/weeklyReports', { templateUrl: '/partials/account/weeklyReports',
+          controller: 'emWeeklyReports', resolve: routeRoleChecks.user
+        })
 });
 
 angular.module('app').run(function($rootScope, $location) {

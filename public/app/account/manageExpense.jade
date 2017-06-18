@@ -1,5 +1,21 @@
 .container
     h1 Expenses List
+    h3 Date Range Filter
+    table.table 
+        tr
+            th Start date range
+            th End date Range
+            th Action Filter
+        tr
+            td 
+                datepicker
+                    input(ng-model="startDate", type="text")
+            td 
+                datepicker
+                    input(ng-model="endDate", type="text")
+            td 
+                button.btn.btn-primary(ng-click="getExpenseWithInRange()") filter
+
     table.table
         thead
             tr

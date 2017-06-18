@@ -45,7 +45,17 @@ angular.module('app').controller('emManageExpenseCtrl', function($scope,$http, e
       created : new Date()
       };   
     };
-
+  $scope.startDate = new Date();
+  $scope.endDate = new Date();
+  $scope.getExpenseWithInRange = function(){
+    console.log($scope.startDate);
+    var startEndDates = [];
+    startEndDates.push($scope.startDate);
+    startEndDates.push($scope.endDate);
+    $http.get('/api/expensesbyUserInRange/'+ emIdentity.currentUser._id+'/'+$scope.startDate+'/'+$scope.endDate).then(function(response){
+      $scope.expenseList = response.data;
+    });
+  }
   $scope.prettyDate = function(dateString){
     var date = new Date(dateString);
     var d = date.getDate();
