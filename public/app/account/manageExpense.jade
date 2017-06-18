@@ -10,25 +10,30 @@
         tbody
             tr
                 td
-                    input.form-control(ng-model="title")
+                    input.form-control(ng-model="currentExpenseData.title")
                 td
-                    input.form-control(ng-model="description")
+                    input.form-control(ng-model="currentExpenseData.description")
                 td
-                    input.form-control(ng-model="amount")
+                    input.form-control(ng-model="currentExpenseData.amount")
                 td
                     datepicker
-                        input(ng-model="expenseDate", type="text")
+                        input(ng-model="currentExpenseData.created", type="text")
                     
                 td 
-                    button.btn.btn-info(ng-click="addExpense()") Add Expense
+                    button.btn.btn-primary(ng-click="addExpense()") Add Expense
                 td 
-                    button.btn.btn-info(ng-click="updateExpense()") Update Expense
-                td 
+                    button.btn.btn-info(ng-click="updateExpense()") Update
+                    &nbsp;
+                    &nbsp;
                     button.btn.btn-info(ng-click="deselectExpense()") clear
 
             tr(ng-repeat="eachExpense in expenseList")
                 td {{eachExpense.title}}
                 td {{eachExpense.description}}
                 td {{eachExpense.amount}}
-                td {{eachExpense.created}}
-    h2 {{userId}}
+                td {{prettyDate(eachExpense.created)}}
+                td 
+                    button.btn.btn-danger(ng-click="removeExpense(eachExpense._id)") Remove
+                td 
+                    button.btn.btn-warning(ng-click="editExpense(eachExpense._id)") Edit
+

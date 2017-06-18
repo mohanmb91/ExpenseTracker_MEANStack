@@ -16,8 +16,12 @@ app.post('/api/users', users.createUser);
 app.put('/api/users', users.updateUser);
 
 
-app.get('/api/users/:userId', expenses.getUserExpenses);
+app.get('/api/expensesbyUser/:id', expenses.getUserExpenses);
+
+app.get('/api/expenses/:id',expenses.getExpense)
 app.post('/api/expenses',expenses.createExpense)
+app.put('/api/expenses/:id', expenses.updateExpense);
+app.delete('/api/expenses/:id', expenses.deleteExpense);
 
 app.get('*',function(req,res){
     res.render('index', {bootstrappedUser : req.user});
