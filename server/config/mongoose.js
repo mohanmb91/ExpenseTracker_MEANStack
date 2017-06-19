@@ -1,25 +1,15 @@
-var mongoose = require("mongoose");
+var mongoose = require('mongoose'),
+    userModel = require('../models/User'),
+    expenseModel = require('../models/Expense');
 
-module.exports = function(config){
-    mongoose.connect(config.db);
-    var db = mongoose.connection;
-    db.on('error',console.error.bind(console,'conntection error ... '));
-    db.once('open',function callback(){
-        console.log("expense manager DB open");
-    });
-
-    var userSchema =  mongoose.Schema({
-        firstName: String,
-        lastName: String,
-        username: String
-    });
-    var User = mongoose.model('User',userSchema);
-
-    User.find({}).exec(function(err,collection){
-        if(collection.length == 0){
-            User.create({firstName: 'mohankumar',lastName: 'MBalasubramani',username: 'mohan@gmail.com'});
-        }
-    });
-
-    
-}
+module.exports = function(config) {
+  mongoose.connect(config.db);
+  var db = mongoose.connection;
+  db.on('error', console.error.bind(console, 'connection error...'));
+  db.once('open', function callback() {
+    console.log('multivision db opened');
+  });
+  
+  userModel.createDefaultUsers();
+  expenseModel.createDefaultExpenses();
+};
