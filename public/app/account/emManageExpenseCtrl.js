@@ -5,13 +5,13 @@ angular.module('app').controller('emManageExpenseCtrl', function($scope,$http, e
     userId:  emIdentity.currentUser._id,
     title : "",
     description : "",
-    amount : 0,
+    amount : 0.00,
     created : new Date()
     };   
     $scope.expenseList = emExpenseByUser.query({id:emIdentity.currentUser._id});
   $scope.addExpense = function() {
     var newExpenseData = $scope.currentExpenseData;
-
+    console.log($scope.currentExpenseData.amount);
     emAuth.createExpense(newExpenseData).then(function() {
       emNotifier.notify('New Expense Added !');
       $scope.expenseList = emExpenseByUser.query({id:emIdentity.currentUser._id});

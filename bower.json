@@ -23,6 +23,7 @@
     "angular-route": "^1.6.4",
     "angular": "^1.6.4",
     "bootstrap": "^3.3.7",
-    "angularjs-datepicker": "^2.1.21"
+    "angularjs-datepicker": "^2.1.21",
+    "angular-mocks": "^1.6.4"
   }
 }
