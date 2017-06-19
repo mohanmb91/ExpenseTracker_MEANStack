@@ -1,0 +1,33 @@
+.container
+    h2 Expenses based on year week
+    h3 Date Range Filter
+    table.table 
+        tr
+            th Start date range
+            th End date Range
+            th Action Filter
+        tr
+            td 
+                datepicker
+                    input(ng-model="startDate", type="text")
+            td 
+                datepicker
+                    input(ng-model="endDate", type="text")
+            td 
+                button.btn.btn-primary(ng-click="getExpenseWithInRange()") filter
+
+    div(ng-repeat= "(weekyear,expenses) in groupByWeek")
+        center
+            h4 {{prettyPrint(weekyear)}} and total amount spent during this week {{groupByWeekTotal[weekyear]}}
+        
+        table.table.table-striped 
+            tr 
+                th Title
+                th Description
+                th Amount
+                th Date Created
+            tr(ng-repeat="eachExpense in expenses | orderBy: '-created'")
+                td {{eachExpense.title }}
+                td {{eachExpense.description }}
+                td {{eachExpense.amount }}
+                td {{prettyDate(eachExpense.created)}}
