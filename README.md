@@ -32,4 +32,9 @@
 ### Testing 
 - with the help of karma I was able to implement client side testing for admin roles.
 
-> Overall it was a good experience building this project. proudly adding this project to the profile. Thanks to gigster.  
+> Overall it was a good experience building this project. I'm proud to add this project to the profile.
+
+#### Aditional details:
+-  Down arrow near the user name leads us to access all the functionality. 
+
+![alt text](https://github.com/mohanmb91/ExpenseTracker_MEANStack/blob/master/images/HomePage.png "Home Page")
