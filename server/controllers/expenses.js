@@ -2,6 +2,14 @@
 
 var Expense = require('mongoose').model('Expense');
 
+
+exports.getExpenses = function(req, res) {
+  Expense.find({}).exec(function(err, collection) {
+    res.send(collection);
+  })
+};
+
+
 exports.createExpense = function(req, res, next) {
   var expenseData = req.body;
   Expense.create(expenseData, function(err, expense) {

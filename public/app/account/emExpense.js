@@ -4,5 +4,8 @@ angular.module('app').factory('emExpense', function($resource) {
         update: {method:'PUT',isArray:false}
         }
   );
+  ExpenseResource.prototype.isAdmin = function() {
+    return this.roles && this.roles.indexOf('admin') > -1;
+  }
   return ExpenseResource;
 }); 

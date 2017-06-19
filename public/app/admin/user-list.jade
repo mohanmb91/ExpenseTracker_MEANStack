@@ -1,4 +1,16 @@
 .container
   table.table
     tr(ng-repeat="user in users")
-      td {{user.firstName + ' ' + user.lastName}}
+      td 
+        h2 {{user.firstName + ' ' + user.lastName}}'s expense List
+        table.table
+          tr
+            th Title
+            th Description
+            th Amount
+            th created
+          tr(ng-repeat = "eachExpense in expenses",ng-if= "eachExpense.userId == user._id") 
+            td {{eachExpense.title}}
+            td {{eachExpense.description}}
+            td {{eachExpense.amount}}
+            td {{printDate(eachExpense.created)}}
