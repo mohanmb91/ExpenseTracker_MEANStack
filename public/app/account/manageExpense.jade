@@ -18,7 +18,6 @@
                 td
                     datepicker
                         input(ng-model="currentExpenseData.created", type="text")
-                    
                 td 
                     button.btn.btn-primary(ng-click="addExpense()",ng-show= "isAddExpenseActive")  Add New
                     button.btn.btn-info(ng-click="updateExpense()",ng-hide = "isAddExpenseActive") Update
