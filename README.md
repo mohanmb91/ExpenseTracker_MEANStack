@@ -37,4 +37,4 @@
 #### Aditional details:
 -  Down arrow near the user name leads us to access all the functionality. 
 
-![alt text](https://github.com/mohanmb91/ExpenseTracker_MEANStack/blob/master/images/HomePage.png "Home Page")
+![alt text](https://github.com/mohanmb91/ExpenseTracker_MEANStack/blob/master/images/UserHomePage.png "Home Page")
