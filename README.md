@@ -35,6 +35,6 @@
 > Overall it was a good experience building this project. I'm proud to add this project to the profile.
 
 #### Aditional details:
--  Down arrow near the user name leads us to access all the functionality. 
+-  Down arrow near the user name leads us to access all the functionalities. 
 
 ![alt text](https://github.com/mohanmb91/ExpenseTracker_MEANStack/blob/master/images/UserHomePage.png "Home Page")
